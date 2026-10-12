@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "stage": "engineering_baseline",
+  "target": "supplied_annotation_foreground",
+  "foreground_ids": [
+    1,
+    2,
+    4
+  ],
+  "allowed_ids": [
+    0,
+    1,
+    2,
+    4
+  ],
+  "clinical_region_name": null,
+  "semantic_note": "Numeric annotation union only; do not claim certified whole-tumor or separate compartments.",
+  "input": {
+    "modalities": [
+      "T1c"
+    ],
+    "orientation": "canonical_RAS",
+    "slice_axis": 2,
+    "size": 240,
+    "normalization": "nonzero_volume_p1_p99_clip_uint8_round_then_divide_255",
+    "retain_empty_slices": true
+  },
+  "model": {
+    "architecture": "2D U-Net",
+    "channels": [
+      8,
+      16,
+      32
+    ],
+    "input_channels": 1,
+    "output_channels": 1,
+    "initialization": "random",
+    "existing_brisc_checkpoint_reused": false
+  },
+  "training_plan": {
+    "seed": 42,
+    "epochs": 5,
+    "batch_size": 8,
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "loss": "BCE plus soft Dice",
+    "augmentation": "none",
+    "mixed_precision": true
+  },
+  "partition": {
+    "salt": "ucsf-engineering-v1",
+    "train_patients": 16,
+    "development_validation_patients": 4,
+    "test_patients": 0,
+    "selection": "sort SHA256(salt:patient_id), first 16 train, remainder development validation"
+  },
+  "evaluation_plan": {
+    "threshold": 0.5,
+    "reference": "original-grid binary numeric union",
+    "aggregate": "per-patient native-volume metrics with explicit empty-case counts",
+    "checkpoint": "final epoch for initial comparison; retain every epoch",
+    "clinical_claims": false
+  },
+  "limits": [
+    "All 20 patients already used for preprocessing development",
+    "Four validation patients are development validation, not independent external evaluation",
+    "T1c-only input cannot reproduce all information available in multi-contrast annotations",
+    "Randomly initialized specialist does not inherit BRISC region semantics",
+    "GPU memory and loader smoke checks required before planned full run"
+  ],
+  "training_started": true,
+  "external_evaluation_ready": false,
+  "readiness": {
+    "cache": "experiments/ucsf-specialist-cache-001/manifest.json",
+    "gpu_smoke": "experiments/ucsf-specialist-smoke-001/summary.json",
+    "full_training_started": true
+  },
+  "execution": {
+    "completed_epochs": 5,
+    "run": "experiments/ucsf-specialist-train-002",
+    "final_native_development_dice": 0.42670428883765965,
+    "promoted": false
+  }
+}

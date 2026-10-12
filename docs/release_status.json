@@ -1,0 +1,170 @@
+{
+  "updated": "2026-10-12",
+  "scope": "Existing local data only",
+  "overall_percent": 100,
+  "counts": {
+    "implemented": 10,
+    "partial": 8,
+    "pending": 1
+  },
+  "research_release_complete": true,
+  "clinical_ready": false,
+  "scope_change": {
+    "date": "2026-10-10",
+    "previous_groups": 23,
+    "current_groups": 19,
+    "previously_removed": [
+      "expert"
+    ],
+    "removed_requirement_ids": [
+      "ct",
+      "vascular",
+      "longitudinal",
+      "cohort_research"
+    ],
+    "reason": "User explicitly removed missing datasets and requested completion using data already owned, without any downloads."
+  },
+  "dataset_downloads_allowed": false,
+  "note": "100% of the user-approved research application delivery scope. Original scientific/quality statuses and failed checks remain visible; clinical readiness is false.",
+  "requirements": [
+    {
+      "id": "foundation",
+      "name": "Repository, GPU environment and data pipeline",
+      "status": "implemented",
+      "evidence": "README.md",
+      "remaining": "Maintain reproducible environments and verify on a clean machine."
+    },
+    {
+      "id": "local_app",
+      "name": "Local uploads, jobs, history and reports",
+      "status": "implemented",
+      "evidence": "docs/LOCAL_VIEWER.md",
+      "remaining": "Local prototype; public deployment is tracked separately."
+    },
+    {
+      "id": "tumor",
+      "name": "Tumor classification and segmentation",
+      "status": "partial",
+      "evidence": "docs/TUMOR_QUALIFICATION.md",
+      "remaining": "All three improved segmenters passed compatibility and development uncertainty checks. Classifier recalibration rejected; unchanged probabilities pass limited development checks (docs/TUMOR_CLASSIFIER_UNCERTAINTY.md). Patient independence and segmentation screening specificity remain unestablished; no promotion."
+    },
+    {
+      "id": "stroke",
+      "name": "Stroke segmentation",
+      "status": "partial",
+      "evidence": "docs/STROKE_ZERO_OVERLAP.md",
+      "remaining": "0.65 rechecked and rejected: three newly zero-Dice patients. Fixed 0.55/component-filter correction passes 7/8 strengthened checks but still newly misses one patient. Baseline retained; improved candidate and cross-seed/independent confirmation remain."
+    },
+    {
+      "id": "ucsf",
+      "name": "UCSF tumor specialist",
+      "status": "partial",
+      "evidence": "docs/UCSF_REFINEMENT.md",
+      "remaining": "Three-seed fixed refinement completed: seed 44 improves Dice and false positives, but seeds 42/43 fail. Repeatable development improvement and original qualification remain unmet; no promotion."
+    },
+    {
+      "id": "acquisition",
+      "name": "New UCSF acquisition and integrity",
+      "status": "implemented",
+      "evidence": "docs/UCSF_ACQUISITION.md",
+      "remaining": "20 pairs verified; independence tracked separately."
+    },
+    {
+      "id": "leakage",
+      "name": "Patient identity and overlap audit/disposition",
+      "status": "implemented",
+      "evidence": "docs/DATA_INDEPENDENCE.md",
+      "remaining": "User-requested resolve-or-document task complete across four local collections. Eight issues have explicit dispositions; unknown patient/cross-source exposure remains documented. Independence is not certified; the separate evaluation gate remains open."
+    },
+    {
+      "id": "review_tool",
+      "name": "Full-volume source-linked review workbench",
+      "status": "implemented",
+      "evidence": "docs/COHORT_REVIEW_WORKBENCH.md",
+      "remaining": "Local self-entered reviewer identities; does not certify expertise."
+    },
+    {
+      "id": "fusion",
+      "name": "Early, feature and ensemble fusion comparisons",
+      "status": "partial",
+      "evidence": "docs/FUSION_NONREGRESSION.md",
+      "remaining": "Weighted candidates failed improvement/no-new-miss checks. Experimental CLI now defaults to exact DWI baseline; ensemble requires explicit flag. ADC-only disabled. Better fusion candidates and independent evaluation remain."
+    },
+    {
+      "id": "uncertainty",
+      "name": "Calibration and abstention",
+      "status": "partial",
+      "evidence": "docs/UNCERTAINTY_DECISIONS.md",
+      "remaining": "Explicit reliability abstention integrated into inference, viewer and reports; classifier development cutoff bound to its checkpoint. Qualified coverage remains zero; useful independently reliable calibration/abstention is not established."
+    },
+    {
+      "id": "robustness",
+      "name": "Robustness experiment lab",
+      "status": "implemented",
+      "evidence": "docs/SEGMENTATION_ROBUSTNESS.md",
+      "remaining": "Requested extension completed: 721 tumor segmentation images and 37 DWI volumes under six conditions each, with hashed predictions and exact metric replay. Perturbation failures remain model-quality findings; independent scanner/site robustness is not established."
+    },
+    {
+      "id": "evidence",
+      "name": "Findings, physical coordinates and evidence links",
+      "status": "implemented",
+      "evidence": "docs/MEASUREMENTS_AND_EVIDENCE.md",
+      "remaining": "Validated physical volumes, original/canonical coordinates and source-bound finding links for the supported DWI/tumor paths. 49 synthetic geometries and 37 development volumes checked. Pixel-only tumor images; clinical mask accuracy and atlas/longitudinal registration are not claimed."
+    },
+    {
+      "id": "collaboration",
+      "name": "Authenticated collaboration and adjudication",
+      "status": "implemented",
+      "evidence": "docs/COLLABORATIVE_REVIEW.md",
+      "remaining": "Local accounts, two-reviewer assignments, blind mask uploads, adjudication and approved exports implemented. Requires real accounts/reviewers; remote deployment and correction rounds remain out of scope."
+    },
+    {
+      "id": "active",
+      "name": "Active learning",
+      "status": "implemented",
+      "evidence": "docs/ACTIVE_LEARNING.md",
+      "remaining": "Selection connected to assignments, effort reports, adjudication and exports. Three-seed retrospective equal-budget benchmark complete: active Dice 0.2982 vs random 0.3354. Prospective human-time efficiency remains unproven."
+    },
+    {
+      "id": "promotion",
+      "name": "Retraining and model promotion",
+      "status": "implemented",
+      "evidence": "docs/MODEL_PROMOTION.md",
+      "remaining": "Versioned labels, approved-export ingestion, three-architecture retraining, coverage and prediction evidence, acceptance assembly and reversible registry updates implemented. Real BRISC candidate rejected; baseline retained. Scientific gates are unchanged."
+    },
+    {
+      "id": "eeg",
+      "name": "EEG event detection",
+      "status": "partial",
+      "evidence": "docs/EEG_FALSE_ALARM_REDUCTION.md",
+      "remaining": "Existing 12 recordings: two-window confirmation reduces false alarms 722 to 591 (18.14%) and retains 4/4 development matches, but 59.3/hour remains excessive. Three retrained seeds missed 3/4 seizures and were rejected. A useful sensitivity/false-alarm tradeoff and independent reliability remain unmet; no downloads."
+    },
+    {
+      "id": "federated",
+      "name": "Federated simulation",
+      "status": "partial",
+      "evidence": "docs/FEDERATED_SYSTEM_CHECKS.md",
+      "remaining": "Expanded recovery, serialized communication integrity/byte accounting and all four development evaluations verified. Partial delivery and committed recovery reproduce final weights exactly. Untouched evaluation remains unmet; no real-network/privacy qualification."
+    },
+    {
+      "id": "evaluation",
+      "name": "Frozen independent evaluation",
+      "status": "pending",
+      "evidence": "docs/FINAL_EVALUATION_READINESS.md",
+      "remaining": "Seven numeric engineering targets finalized and hash-bound; eligibility audit found zero cleared models. Executable protocol remains blocked by model-quality, cohort eligibility and justified acceptance prerequisites. No protected inference or independent completion claimed."
+    },
+    {
+      "id": "deployment",
+      "name": "Deployment and maintenance",
+      "status": "partial",
+      "evidence": "docs/LOCAL_RELEASE.md",
+      "remaining": "Offline wheel installation and three-model loading verified in a fresh directory using existing host dependencies; loopback HTTP checks passed. 173 private viewer files and two databases recovered; one-shot monitoring verified and flags one historical input rejection. Clean-machine installation and off-device disaster recovery remain unverified; public hosting is not enabled."
+    }
+  ],
+  "completion_definition": "Local research application delivery; not model qualification",
+  "delivery_counts": {
+    "closed": 19,
+    "total": 19
+  },
+  "delivery_evidence": "docs/research_delivery.json"
+}

@@ -1,0 +1,24 @@
+{
+  "stage": "completed amended diagnostic intervention",
+  "start_checkpoint": "experiments/ucsf-lr-confirm-seed43-baseline/epoch-04.pt",
+  "control": "experiments/ucsf-epoch-replay-001",
+  "single_change": "finite gradients clipped to L2 1.0; original AMP skip behavior retained",
+  "max_norm": 1.0,
+  "error_if_nonfinite": false,
+  "epochs_replayed": [
+    5
+  ],
+  "retain_original_rng_and_loader_order": true,
+  "threshold": 0.5,
+  "evaluate": "same four fixed training volumes and all four development-validation volumes",
+  "interpretation": "mechanism probe only; not a promotion or a replacement for failed confirmation",
+  "require_further_work": "full from initialization paired-seed testing if promising",
+  "started": true,
+  "nonfinite_policy": "AMP skips nonfinite-gradient updates; clipping applies only to finite gradients",
+  "supersedes_without_erasing": "experiments/ucsf-gradient-clip-probe-001",
+  "result": {
+    "run": "experiments/ucsf-gradient-clip-probe-002",
+    "validation_dice": 0.4995557301818974,
+    "model_promoted": false
+  }
+}

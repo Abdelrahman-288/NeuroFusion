@@ -1,0 +1,18 @@
+{
+  "protocol_version": 1,
+  "seeds": [42, 43, 44],
+  "epochs": 5,
+  "comparison_checkpoint": "last.pt",
+  "evaluation_partition": "validation",
+  "test_usage": false,
+  "augmentation_seed": "training seed + 1000",
+  "development_candidate_gates": {
+    "mean_clean_accuracy_delta_pp_min": -1.0,
+    "mean_clean_macro_f1_delta_min": -0.01,
+    "each_class_mean_clean_recall_delta_pp_min": -5.0,
+    "mean_perturbed_accuracy_delta_pp_min": 2.0,
+    "each_seed_clean_accuracy_delta_pp_min": -3.0
+  },
+  "decision_scope": "Engineering screening criteria fixed before seeds 43 and 44; seed 42 already observed. Passing only supports further independent evaluation, never clinical readiness or automatic viewer replacement.",
+  "remaining_gates": ["independent external evaluation", "calibration and uncertainty evaluation", "explicit checkpoint registration review"]
+}

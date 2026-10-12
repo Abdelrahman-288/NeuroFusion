@@ -1,0 +1,47 @@
+{
+  "scope": "UCSF specialist research qualification; not whole project or clinical approval",
+  "expert_review_required": false,
+  "gates": [
+    {
+      "id": "development_reproducibility",
+      "passed": true
+    },
+    {
+      "id": "development_performance",
+      "passed": false
+    },
+    {
+      "id": "target_contract",
+      "passed": false
+    },
+    {
+      "id": "cohort_independence",
+      "passed": false
+    },
+    {
+      "id": "acquisition_integrity",
+      "passed": true
+    },
+    {
+      "id": "frozen_evaluation_protocol",
+      "passed": false
+    },
+    {
+      "id": "independent_performance",
+      "passed": false
+    },
+    {
+      "id": "application_integration",
+      "passed": false
+    },
+    {
+      "id": "release_review",
+      "passed": false
+    }
+  ],
+  "passed": 2,
+  "total": 9,
+  "qualified_for_research_release": false,
+  "clinical_ready": false,
+  "scope_change": "2026-10-10: user removed mandatory expert review; no expert review claimed"
+}

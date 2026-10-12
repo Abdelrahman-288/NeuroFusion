@@ -1,0 +1,20 @@
+{
+  "updated": "2026-10-10",
+  "scope": "Existing local data only",
+  "specialists": [
+    {
+      "id": "eeg",
+      "name": "EEG seizure",
+      "dataset": "CHB-MIT 1.0.0",
+      "inputs": "Six specified bipolar channels, 256 Hz EDF",
+      "target": "Seizure-event intervals during recordings",
+      "source_url": "https://physionet.org/content/chbmit/1.0.0/",
+      "status": "pilot_trained_quality_failed",
+      "remaining": "Use the existing 12 EDF recordings only. Reduce false alarms; no additional acquisition. Independent qualification is not established.",
+      "trained": true,
+      "independently_qualified": false,
+      "clinical_ready": false
+    }
+  ],
+  "dataset_downloads_allowed": false
+}

@@ -1,0 +1,2 @@
+subject_id,study_id,dwi,adc,flair,mask
+sub-example,ses-01,sub-example/dwi.nii.gz,sub-example/adc.nii.gz,sub-example/flair.nii.gz,sub-example/mask.nii.gz

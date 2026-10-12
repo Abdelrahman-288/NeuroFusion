@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>NeuroFusion · Local viewer</title>
+<style>
+:root{font-family:system-ui,sans-serif;color:#e5edf7;background:#0b1422}body{max-width:1180px;margin:0 auto;padding:32px}header{display:flex;justify-content:space-between;align-items:center}h1{font-size:34px;margin:8px 0}h2{font-size:21px}p{line-height:1.6;color:#bbc9dc}.badge{color:#6ce7d7;border:1px solid #285e62;border-radius:25px;padding:9px 15px}.panel{padding:24px;border:1px solid #304259;border-radius:16px;background:#111f31;margin:20px 0}label{display:block;margin:14px 0 8px}select,input[type=file],button{padding:12px;border:1px solid #47627c;border-radius:8px;background:#172b40;color:white;font:inherit}select{width:100%}button{background:#11796f;cursor:pointer;margin-top:18px}button:disabled{opacity:.5;cursor:wait}a{color:#6ce7d7}.grid{display:grid;grid-template-columns:1fr 2fr;gap:22px}.image-stack{position:relative;max-width:800px;margin:auto;background:black}.image-stack img{display:block;width:100%;image-rendering:auto}.image-stack #overlay{position:absolute;inset:0}.warning{border-left:3px solid #e7b854;padding-left:15px}.scores div{display:flex;justify-content:space-between;padding:10px;border-bottom:1px solid #304259}input[type=range]{width:100%}#status{min-height:26px}#error{color:#ffb0ab}small{color:#a6bad3}@media(max-width:760px){body{padding:16px}.grid{grid-template-columns:1fr}header{display:block}}
+</style></head><body>
+<header><div><small>NEUROFUSION / LOCAL RESEARCH WORKSPACE</small><h1>Explore model predictions</h1></div><span class="badge">On this computer</span></header>
+<p>Run the trained models on a supported input and inspect their outputs. Files stay in this local project; uploads and results are retained on disk.</p>
+<p class="warning">Research prototype, not a diagnostic tool. Image modality cannot be verified automatically. Model scores are uncalibrated; “no_tumor” does not mean healthy.</p>
+<section class="panel"><form id="form">
+<label for="task">Analysis</label><select id="task"><option value="tumor-image">Tumor image · classification + segmentation</option><option value="stroke-dwi">Stroke DWI · 3D lesion segmentation</option></select>
+<p id="help">A BRISC-style 2D T1 brain MRI image in PNG or JPEG format. The segmenter was evaluated only on tumor-positive images.</p>
+<label for="file">Choose image or volume (maximum 25 MiB)</label><input id="file" type="file" accept=".png,.jpg,.jpeg" required>
+<label><input id="confirm" type="checkbox" required> I have selected the supported input type described above.</label>
+<button id="run" type="submit">Analyze locally</button><p id="status" role="status" aria-live="polite">Ready for a supported input.</p><p id="error" role="alert"></p>
+</form></section>
+<p><a href="/research/robustness/index.html" target="_blank" rel="noopener">View development robustness evaluation</a> · <a href="/research/augmentation/index.html" target="_blank" rel="noopener">View augmentation comparison</a> · <a href="/research/multiseed/index.html" target="_blank" rel="noopener">View three-seed evaluation</a> · <a href="/research/contrast/index.html" target="_blank" rel="noopener">View contrast-only comparison</a> · <a href="/research/overlap/index.html" target="_blank" rel="noopener">View dataset overlap control audit</a> · <a href="/research/pdgm/index.html" target="_blank" rel="noopener">View external dataset intake</a> · <a href="/research/adapter/index.html" target="_blank" rel="noopener">View synthetic adapter verification</a></p>
+<section class="panel" aria-labelledby="pilotTitle"><h2 id="pilotTitle">UCSF pilot review workspace</h2>
+<p>Completed pilot: 20 MRI/mask pairs and 3,100 prepared slices. Reports are snapshots from 8 October 2026.</p>
+<ul><li><a href="/research/specialists/index.html">Additional specialists: data and pilot results</a></li>
+<li><a href="/research/advanced-fusion/index.html">Advanced fusion evaluation and uncertainty results</a></li>
+<li><a href="/research/independent/index.html">Independent evaluation readiness and reviewer handoff</a></li>
+<li><a href="/research/model-quality/index.html">Tumor and stroke model-quality comparison</a></li>
+<li><a href="/release-status">Full project roadmap: implemented and remaining features</a></li>
+<li><a href="/cohort-review">Open full-volume cohort review workbench</a></li>
+<li><a href="/research/ucsf/exposure/index.html">New cohort: exposure audit and expert review ledger</a></li>
+<li><a href="/research/ucsf/acquisition/index.html">New UCSF data: acquisition integrity and progress</a></li>
+<li><a href="/research/ucsf/qualification/index.html">Progress and qualification: remaining milestones</a></li>
+<li><a href="/research/ucsf/clipping-confirmation/index.html">Clipping from initialization: three-seed results</a></li>
+<li><a href="/research/ucsf/clipping/index.html">Gradient clipping: diagnostic intervention</a></li>
+<li><a href="/research/ucsf/replay/index.html">Failing epoch: exact replay and update trace</a></li>
+<li><a href="/research/ucsf/diagnostics/index.html">Training diagnostics: empty outputs and false positives</a></li>
+<li><a href="/research/ucsf/confirmation/index.html">Three-seed learning-rate confirmation</a></li>
+<li><a href="/research/ucsf/learning-rate/index.html">Lower learning rate: controlled comparison</a></li>
+<li><a href="/research/ucsf/sampling/index.html">Balanced sampling: controlled comparison</a></li>
+<li><a href="/research/ucsf/specialist/index.html">UCSF specialist: five-epoch training results</a></li>
+<li><a href="/research/ucsf/errors/index.html">Prediction errors: missed regions and extra predictions</a></li>
+<li><a href="/research/ucsf/pilot/index.html">Acquisition and import results</a></li>
+<li><a href="/research/ucsf/resolution/index.html">Resolution audit: 20 exams at three sizes</a></li>
+<li><a href="/research/ucsf/alignment/index.html">Alignment gallery: 180 original-grid views</a></li>
+<li><a href="/research/ucsf/targets/index.html">Candidate labels and model compatibility</a></li>
+<li><a href="/research/ucsf/separation/index.html">Patient exclusions and candidate cohort</a></li></ul>
+<p class="warning">External evaluation has not started. Expert alignment reviews: 0/20. Label confirmation, model-target compatibility and source independence remain pending. Pilot scans are development data.</p></section>
+<section class="panel"><h2>Saved analyses</h2><p>Jobs continue while this page is closed, as long as the local server stays running. Latest 200 jobs shown.</p><div id="history" aria-live="polite"></div></section>
+<section id="results" hidden><div class="grid"><aside class="panel"><h2>Model outputs</h2><p><a id="reportPreview" target="_blank" rel="noopener">Open research report</a></p><p><a id="reportDownload" download>Download offline report (HTML)</a></p><p><a id="reportJson" download>Download report snapshot (JSON)</a></p><h3>Input quality checks</h3><p id="qualitySummary"></p><ul id="qualityWarnings"></ul><div id="scores" class="scores"></div><p id="finding"></p><p id="limits"></p><p><a id="json" download>Download result JSON</a></p><p><a id="probability" download>Download probability data</a></p></aside>
+<div class="panel"><h2>Image and predicted region</h2><p>Red overlay: prediction at a fixed 0.5 threshold. No reference mask is shown.</p><div class="image-stack"><img id="base" alt="Uploaded brain image"><img id="overlay" alt="Predicted-region overlay"></div><label for="opacity">Overlay opacity</label><input type="range" id="opacity" min="0" max="1" step=".05" value="1"><div id="sliceControl"><label for="slice">Slice <span id="sliceLabel"></span></label><input id="slice" type="range" min="0" value="0" step="1"></div></div></div></section>
+<section id="reviewPanel" class="panel" hidden><h2>Human review</h2>
+<p>Reviewer observations are saved separately from model predictions. Labels are self-entered, not verified identities. These notes are not diagnoses or training labels.</p>
+<form id="reviewForm"><label for="reviewer">Reviewer label</label><input id="reviewer" maxlength="80" required>
+<label for="assessment">Review assessment</label><select id="assessment"><option value="uncertain">Uncertain</option><option value="needs_attention">Needs attention</option><option value="reviewed">Reviewed</option></select>
+<label for="reviewNote">Observation or correction</label><textarea id="reviewNote" maxlength="4000" rows="4" required style="width:100%;box-sizing:border-box"></textarea>
+<label><input id="attachSlice" type="checkbox"> Attach to the currently displayed image or slice</label>
+<button id="saveReview">Save review entry</button><p id="reviewStatus" role="status"></p></form>
+<p><a id="reviewExport" download="review-history.json">Download review history JSON</a></p><div id="reviewEntries"></div></section>
+<script>
+const $=id=>document.getElementById(id);let current=null;
+$('task').onchange=()=>{const tumor=$('task').value==='tumor-image';$('file').accept=tumor?'.png,.jpg,.jpeg':'.nii,.nii.gz';$('file').value='';$('confirm').checked=false;$('results').hidden=true;$('reviewPanel').hidden=true;$('help').textContent=tumor?'A BRISC-style 2D T1 brain MRI image in PNG or JPEG format. The segmenter was evaluated only on tumor-positive images.':'A single 3D DWI MRI volume in NIfTI format, with millimeter units. Do not upload ADC, FLAIR, T1, CT or a 4D scan to this task. Slice display uses canonical RAS orientation and voxel-based proportions.';};
+function renderMeasurements(){
+ let box=$('measurements');if(!box){box=document.createElement('div');box.id='measurements';$('finding').after(box);}box.replaceChildren();
+ const m=current.result.measurements;const text=document.createElement('p');box.append(text);
+ if(!m){text.textContent='Validated measurements were not recorded for this older result.';return;}
+ text.textContent=m.physical_measurements_available?'Predicted volume: '+m.total_volume_ml.toFixed(4)+' mL. Connected regions are model outputs, not confirmed lesions.':'Predicted area: '+m.count+' pixels. Physical area/volume unavailable without trusted spacing.';
+ for(const f of m.findings){const button=document.createElement('button');button.textContent=f.id+' · '+(m.physical_measurements_available?f.volume_ml.toFixed(4)+' mL':f.count+' pixels')+' · show slice '+(f.slice_index+1);button.onclick=()=>{$('slice').value=f.slice_index;view();$('base').scrollIntoView({block:'center'});};box.append(button);}
+}
+function view(){renderMeasurements();let notice=$('uncertaintyNotice');if(!notice){notice=document.createElement('p');notice.id='uncertaintyNotice';notice.className='warning';$('scores').before(notice);}const u=current.result.uncertainty;notice.textContent=u?'Reliability decision: '+u.decision+'. '+u.reason+' Classification development screen: '+u.classification_development_screen.decision+'. Raw outputs below are for research inspection.':'Uncertainty decision was not recorded for this older analysis. Reliability is not established.';const index=Number($('slice').value);const item=current.result.views[index];const base='/results/'+current.job+'/';$('base').src=base+item.image;$('overlay').src=base+item.overlay;$('sliceLabel').textContent=(index+1)+' / '+current.result.views.length;}
+$('opacity').oninput=()=>{$('overlay').style.opacity=$('opacity').value;};$('slice').oninput=view;
+function render(data){current=data;const r=data.result;const q=r.input_quality;$('qualitySummary').textContent=q?q.status+' — '+q.scope:'Not recorded for this earlier analysis.';$('qualityWarnings').replaceChildren();for(const warning of (q?q.warnings:[])){const li=document.createElement('li');li.textContent=warning;$('qualityWarnings').append(li);}$('reportPreview').href='/api/reports/'+data.job;$('reportDownload').href='/api/reports/'+data.job+'?download=1';$('reportJson').href='/api/reports/'+data.job+'?format=json&download=1';$('scores').replaceChildren();if(r.classification){for(const [name,score] of Object.entries(r.classification.scores)){const line=document.createElement('div');const a=document.createElement('span'),b=document.createElement('span');a.textContent=name;b.textContent=(score*100).toFixed(1)+'%';line.append(a,b);$('scores').append(line);}}$('finding').textContent=r.classification?'Top image class: '+r.classification.predicted_class+'. Segmentation is a separate model output.':'Stroke DWI segmentation output.';$('limits').textContent=r.limitations.join(' ');$('slice').max=r.views.length-1;$('slice').value=r.initial_slice||0;$('sliceControl').hidden=r.views.length===1;$('json').href='/results/'+data.job+'/result.json';$('probability').href='/results/'+data.job+'/'+r.probability_file;view();$('results').hidden=false;}
+let selectedJob=null, refreshing=false;
+async function openJob(id){
+ selectedJob=id;$('reviewPanel').hidden=true;
+ try{const response=await fetch('/results/'+id+'/result.json');if(!response.ok)throw Error('Result is unavailable');const result=await response.json();if(selectedJob===id){render({job:id,result});$('status').textContent='Saved analysis opened.';await loadReviews(id);}}
+ catch(error){$('error').textContent=error.message;}
+}
+async function refresh(){
+ if(refreshing)return;refreshing=true;
+ try{const response=await fetch('/api/jobs');if(!response.ok)throw Error('History unavailable');const data=await response.json();$('history').replaceChildren();
+ if(!data.jobs.length)$('history').textContent='No analyses yet.';
+ for(const job of data.jobs){const row=document.createElement('div');row.style.padding='12px 0';const text=document.createElement('span');text.textContent=job.filename+' / '+job.task+' / '+job.status+' / '+new Date(job.created).toLocaleString();row.append(text);
+ if(job.status==='completed'){const button=document.createElement('button');button.textContent='Open result';button.style.margin='8px';button.onclick=()=>openJob(job.id);row.append(button);}
+ if(job.error){const error=document.createElement('p');error.textContent=job.error;row.append(error);}$('history').append(row);
+ if(job.id===selectedJob && job.status!=='completed')$('status').textContent='Analysis '+job.status+'.'+(job.error?' '+job.error:'');
+ if(job.id===selectedJob && job.status==='completed' && (!current || current.job!==job.id))await openJob(job.id);
+ }
+ }catch(error){$('status').textContent='Cannot refresh history. Check the local server; saved jobs remain on disk.';}finally{refreshing=false;}
+}
+$('form').onsubmit=async e=>{e.preventDefault();const file=$('file').files[0];if(!file)return;$('error').textContent='';if(file.size>25*1024*1024){$('error').textContent='File exceeds the 25 MiB limit.';return;}$('run').disabled=true;$('status').textContent='Uploading to local queue...';
+try{const response=await fetch('/api/analyze?task='+encodeURIComponent($('task').value)+'&filename='+encodeURIComponent(file.name),{method:'POST',headers:{'X-NeuroFusion-Request':'1','Content-Type':'application/octet-stream'},body:file});const data=await response.json();if(!response.ok)throw Error(data.error||'Submission failed');selectedJob=data.job.id;$('results').hidden=true;$('reviewPanel').hidden=true;$('status').textContent='Analysis queued. You can submit another input.';await refresh();
+}catch(error){$('error').textContent=error.message;$('status').textContent='Submission did not complete.';}finally{$('run').disabled=false;}};
+const drafts=new Map();let reviewJob=null;
+function keepDraft(){if(reviewJob)drafts.set(reviewJob,{reviewer:$('reviewer').value,note:$('reviewNote').value,assessment:$('assessment').value,attach:$('attachSlice').checked});}
+$('reviewForm').oninput=keepDraft;
+async function loadReviews(id){
+ const response=await fetch('/api/reviews/'+id);if(!response.ok)throw Error('Could not load review history');const data=await response.json();
+ if(!current||current.job!==id||selectedJob!==id)return;
+ reviewJob=id;const draft=drafts.get(id)||{reviewer:'',note:'',assessment:'uncertain',attach:false};
+ $('reviewer').value=draft.reviewer;$('reviewNote').value=draft.note;$('assessment').value=draft.assessment;$('attachSlice').checked=draft.attach;
+ $('reviewStatus').textContent='';$('reviewExport').href='/api/reviews/'+id;$('reviewEntries').replaceChildren();
+ if(!data.reviews.length)$('reviewEntries').textContent='No saved review entries.';
+ for(const entry of data.reviews){const block=document.createElement('article');const title=document.createElement('p');title.textContent=entry.reviewer+' / '+entry.assessment+' / '+new Date(entry.created).toLocaleString();const note=document.createElement('p');note.style.whiteSpace='pre-wrap';note.textContent=entry.note;block.append(title,note);
+ if(entry.slice_index!==null){const button=document.createElement('button');button.textContent='Show image / slice '+(entry.slice_index+1);button.onclick=()=>{if(current.job===id){$('slice').value=entry.slice_index;view();$('base').scrollIntoView({block:'center'});}};block.append(button);}$('reviewEntries').append(block);}
+ $('reviewPanel').hidden=false;
+}
+$('reviewForm').onsubmit=async e=>{e.preventDefault();if(!current||reviewJob!==current.job)return;const id=reviewJob;const payload={reviewer:$('reviewer').value,note:$('reviewNote').value,assessment:$('assessment').value,slice_index:$('attachSlice').checked?Number($('slice').value):null};$('saveReview').disabled=true;
+ try{const response=await fetch('/api/reviews/'+id,{method:'POST',headers:{'X-NeuroFusion-Request':'1','Content-Type':'application/json'},body:JSON.stringify(payload)});const data=await response.json();if(!response.ok)throw Error(data.error||'Review not saved');drafts.delete(id);if(current.job===id){await loadReviews(id);$('reviewStatus').textContent='Review saved. Earlier entries and model outputs are preserved.';}}
+ catch(error){$('reviewStatus').textContent=error.message;}finally{$('saveReview').disabled=false;}};
+window.addEventListener('beforeunload',e=>{if([...drafts.values()].some(d=>d.note.trim())){e.preventDefault();e.returnValue='';}});
+refresh();setInterval(refresh,2500);
+</script></body></html>

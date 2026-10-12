@@ -1,0 +1,41 @@
+{
+  "stage": "completed paired-seed confirmation",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "reuse_seed_42": [
+    "experiments/ucsf-specialist-train-002",
+    "experiments/ucsf-low-lr-train-001"
+  ],
+  "learning_rates": {
+    "baseline": 0.001,
+    "candidate": 0.0003
+  },
+  "epochs": 5,
+  "sampling": "uniform shuffle without replacement",
+  "partition": "experiments/ucsf-specialist-plan-001/partitions.json",
+  "checkpoint": "final epoch",
+  "threshold": 0.5,
+  "acceptance": "all four existing comparison checks must pass separately for each of three seeds",
+  "checks": {
+    "primary": "mean per-patient native Dice must exceed baseline",
+    "guardrails": [
+      "mean native IoU must not decrease",
+      "mean false-positive volume must not increase",
+      "no patient Dice decrease greater than 0.05"
+    ],
+    "if_failed": "retain baseline and report negative result",
+    "if_passed": "candidate for paired three-seed confirmation, not clinical or automatic deployment approval"
+  },
+  "no_automatic_promotion": true,
+  "independent_evaluation": false,
+  "additional_training_started": true,
+  "execution": {
+    "report": "experiments/ucsf-lr-confirmation-001",
+    "all_seeds_passed": false,
+    "decision": "confirmation failed; retain baseline",
+    "model_promoted": false
+  }
+}

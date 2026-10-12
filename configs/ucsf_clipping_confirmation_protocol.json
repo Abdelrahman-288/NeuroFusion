@@ -1,0 +1,43 @@
+{
+  "stage": "completed full-initialization clipping confirmation",
+  "seeds": [
+    42,
+    43,
+    44
+  ],
+  "single_change": "clip finite unscaled gradients to global L2 norm 1.0",
+  "max_norm": 1.0,
+  "nonfinite_policy": "original AMP skip and scale reduction",
+  "learning_rate": 0.001,
+  "epochs": 5,
+  "sampling": "original uniform without replacement",
+  "checkpoint": "final epoch",
+  "threshold": 0.5,
+  "partition": "experiments/ucsf-specialist-plan-001/partitions.json",
+  "acceptance": "all four existing comparison checks must pass separately for each of three seeds",
+  "checks": {
+    "primary": "mean per-patient native Dice must exceed baseline",
+    "guardrails": [
+      "mean native IoU must not decrease",
+      "mean false-positive volume must not increase",
+      "no patient Dice decrease greater than 0.05"
+    ],
+    "if_failed": "retain baseline and report negative result",
+    "if_passed": "candidate for paired three-seed confirmation, not clinical or automatic deployment approval"
+  },
+  "diagnostic_endpoint": "count empty predictions separately; avoiding empty outputs alone does not pass performance gates",
+  "controls": {
+    "42": "experiments/ucsf-specialist-train-002",
+    "43": "experiments/ucsf-lr-confirm-seed43-baseline",
+    "44": "experiments/ucsf-lr-confirm-seed44-baseline"
+  },
+  "independent_evaluation": false,
+  "model_promoted": false,
+  "started": true,
+  "execution": {
+    "report": "experiments/ucsf-clipping-confirmation-001",
+    "all_seeds_passed": false,
+    "decision": "confirmation failed; retain baseline",
+    "model_promoted": false
+  }
+}

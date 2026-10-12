@@ -1,0 +1,14 @@
+{
+  "updated": "2026-10-12",
+  "completion_definition": "local_research_application",
+  "completion_amendment": "12 October 2026: user accepted a finished research application with documented model limitations, without guaranteed performance. Existing scientific gates remain unchanged. Clean-machine, off-device recovery and public hosting are unverified limitations, not claims of this local delivery.",
+  "scope": "Existing local data only",
+  "dataset_downloads_allowed": false,
+  "expert_review_required": false,
+  "allowed_dataset_roots": ["data/raw/brisc-v6", "data/raw/isles-2022", "data/raw/ucsf-pdgm-v5", "data/raw/chbmit-pilot"],
+  "existing_protected_cohort_root": "experiments/ucsf-acquisition-001/raw",
+  "removed_requirement_ids": ["ct", "vascular", "longitudinal", "cohort_research"],
+  "removed_datasets": ["RSNA ICH", "RSNA intracranial aneurysm", "MSSEG-2", "VALDO", "ATLAS", "BraTS-METS", "BraTS-PEDs", "WMH Challenge", "CQ500", "ADNI", "Additional CHB-MIT recordings"],
+  "reason": "User explicitly removed missing datasets and requested completion using data already owned, without any downloads.",
+  "quality_policy": "Preserve failed checks, protected splits and model promotion gates. Removed scope is not completed work."
+}

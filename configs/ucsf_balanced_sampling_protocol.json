@@ -1,0 +1,51 @@
+{
+  "stage": "completed controlled development experiment",
+  "name": "foreground-balanced sampling",
+  "hypothesis": "Increasing exposure to annotation-positive slices may reduce missed foreground; it may also increase false positives. This is unproven.",
+  "baseline": "experiments/ucsf-specialist-train-002",
+  "partition": "experiments/ucsf-specialist-plan-001/partitions.json",
+  "single_changed_factor": "sampling weights",
+  "sampling": {
+    "positive_slice_probability": 0.5,
+    "negative_slice_probability": 0.5,
+    "within_group": "uniform with replacement",
+    "draws_per_epoch": 2480,
+    "training_only": true
+  },
+  "unchanged": {
+    "seed": 42,
+    "epochs": 5,
+    "batch_size": 8,
+    "architecture": "TumorUNet 8/16/32",
+    "initialization": "random",
+    "optimizer": "Adam",
+    "learning_rate": 0.001,
+    "loss": "BCE plus soft Dice",
+    "augmentation": "none",
+    "input": "T1c 240x240",
+    "threshold": 0.5,
+    "checkpoint": "final epoch"
+  },
+  "decision_rule": {
+    "primary": "mean per-patient native Dice must exceed baseline",
+    "guardrails": [
+      "mean native IoU must not decrease",
+      "mean false-positive volume must not increase",
+      "no patient Dice decrease greater than 0.05"
+    ],
+    "if_failed": "retain baseline and report negative result",
+    "if_passed": "candidate for paired three-seed confirmation, not clinical or automatic deployment approval"
+  },
+  "limits": [
+    "four development patients already inspected",
+    "no independent test set",
+    "cannot infer clinical safety or broader performance"
+  ],
+  "training_started": true,
+  "execution": {
+    "run": "experiments/ucsf-balanced-train-001",
+    "comparison": "experiments/ucsf-balanced-comparison-001",
+    "decision": "retain baseline; sampling candidate rejected",
+    "model_promoted": false
+  }
+}

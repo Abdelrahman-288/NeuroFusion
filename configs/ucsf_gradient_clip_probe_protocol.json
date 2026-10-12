@@ -1,0 +1,18 @@
+{
+  "stage": "completed with failure",
+  "start_checkpoint": "experiments/ucsf-lr-confirm-seed43-baseline/epoch-04.pt",
+  "control": "experiments/ucsf-epoch-replay-001",
+  "single_change": "clip unscaled global gradient L2 norm to 1.0 before optimizer update",
+  "max_norm": 1.0,
+  "error_if_nonfinite": true,
+  "epochs_replayed": [
+    5
+  ],
+  "retain_original_rng_and_loader_order": true,
+  "threshold": 0.5,
+  "evaluate": "same four fixed training volumes and all four development-validation volumes",
+  "interpretation": "mechanism probe only; not a promotion or a replacement for failed confirmation",
+  "require_further_work": "full from initialization paired-seed testing if promising",
+  "started": true,
+  "result": "aborted at update 244"
+}

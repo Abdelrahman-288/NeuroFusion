@@ -1,0 +1,114 @@
+{
+  "schema_version": 1,
+  "datasets": [
+    {
+      "id": "isles-2022",
+      "status": "downloaded_checksum_verified_extracted",
+      "task": "stroke_lesion_segmentation",
+      "source": "https://zenodo.org/records/7960856",
+      "version": "2.3.1",
+      "paper": "https://www.nature.com/articles/s41597-022-01875-5",
+      "inputs": [
+        "dwi",
+        "adc",
+        "flair"
+      ],
+      "label": "binary_lesion_mask",
+      "terms_review": "2026-10-06: release API reports open access, CC-BY-4.0; retain attribution and indicate transformations (docs/DATA_ATTRIBUTION.md)",
+      "patient_identity": "must be taken from source metadata, never inferred from slices",
+      "limitations": [
+        "Selected stroke cohort, not general brain screening",
+        "Internal holdout is not official challenge test data"
+      ],
+      "local_root": "data/raw/isles-2022",
+      "provenance": "data/downloads/isles-2022-v2.3.1/provenance.json",
+      "curated_manifest": "experiments/isles-curated-001/manifest.json",
+      "curation_note": "250 source studies; two exact-image duplicate subjects with differing masks quarantined; 248 retained; splits frozen after distribution review"
+    },
+    {
+      "id": "brisc-2025",
+      "status": "curated_classification_and_segmentation_baselines_trained",
+      "version": "Kaggle version 6",
+      "task": "2d_tumor_classification_and_segmentation",
+      "source": "https://www.kaggle.com/datasets/briscdataset/brisc2025",
+      "paper": "https://doi.org/10.1038/s41597-026-06753-y",
+      "inputs": [
+        "2d_t1_mri_image"
+      ],
+      "labels": [
+        "glioma",
+        "meningioma",
+        "pituitary",
+        "no_tumor",
+        "binary_tumor_mask_when_supplied"
+      ],
+      "terms_review": "2026-10-06: Kaggle version 6 metadata declares CC BY 4.0; retain source attribution",
+      "local_root": "data/raw/brisc-v6/brisc2025",
+      "provenance": "data/downloads/brisc-v6/provenance.json",
+      "curated_partitions": "experiments/brisc-curated-001/splits.json",
+      "curation_note": "3533 train, 943 validation, 990 test, 534 quarantined; partitions group exact and perceptually similar images, not verified patients; all 4793 masks checksum-verified but nonbinary",
+      "patient_identity": "Unreliable/unavailable; image IDs must not be treated as patient IDs",
+      "mask_policy": "Source intensities 0-10 and 246-255; threshold 128, reject gap values; no original files modified",
+      "limitations": [
+        "Initial research baselines; segmentation evaluated on tumor-positive images only",
+        "No_tumor is not equivalent to healthy",
+        "Task folders reuse images",
+        "Source-dataset overlap requires review",
+        "Patient-level independence unproven"
+      ]
+    },
+    {
+      "id": "ucsf-pdgm",
+      "version": "5",
+      "status": "local_development_and_protected_subsets_acquired",
+      "task": "candidate_glioma_segmentation_external_study",
+      "source": "https://www.cancerimagingarchive.net/collection/ucsf-pdgm/",
+      "license": "CC BY 4.0",
+      "local_root": "data/raw/ucsf-pdgm-v5",
+      "provenance": "experiments/pdgm-import-001/download-provenance.json",
+      "patient_index": "experiments/pdgm-intake-001/patient-index.json",
+      "exams": 501,
+      "patients": 495,
+      "downloaded_mri_volumes": 40,
+      "evaluation_ready": false,
+      "limitations": [
+        "20 development exams plus 20 protected exams; not the full UCSF collection",
+        "Protected cohort integrity verified; independence unresolved",
+        "Development specialist failed qualification; no independent evaluation",
+        "Expert review optional; no review claimed",
+        "No further acquisition permitted"
+      ],
+      "downloaded_mask_volumes": 40,
+      "pilot_import": "experiments/pdgm-import-004/summary.json",
+      "provenance_history": [
+        "experiments/pdgm-import-001/download-provenance.json",
+        "experiments/pdgm-import-002/download-provenance.json",
+        "experiments/pdgm-import-003/download-provenance.json",
+        "experiments/pdgm-import-004/download-provenance.json"
+      ],
+      "resolution_audit": "experiments/pdgm-pilot-resolution-001/summary.json",
+      "alignment_review": "experiments/pdgm-pilot-resolution-001/alignment-review.json",
+      "development_exams": 20,
+      "protected_exams": 20,
+      "protected_local_root": "experiments/ucsf-acquisition-001/raw",
+      "protected_provenance": "experiments/ucsf-acquisition-001/summary.json"
+    },
+    {
+      "id": "chbmit-pilot",
+      "local_root": "data/raw/chbmit-pilot",
+      "version": "1.0.0 subset",
+      "recordings": 12,
+      "task": "eeg_seizure_event_research",
+      "status": "pilot_trained_quality_failed",
+      "source": "https://physionet.org/content/chbmit/1.0.0/",
+      "provenance": "experiments/eeg-pilot-001/download-manifest.json",
+      "limitations": [
+        "Label-selected pilot",
+        "722 false alarms in validation; no deployment qualification",
+        "No additional recordings permitted"
+      ]
+    }
+  ],
+  "dataset_downloads_allowed": false,
+  "scope": "Existing local data only"
+}

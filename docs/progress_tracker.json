@@ -1,0 +1,274 @@
+{
+  "updated": "2026-10-12",
+  "scope_freeze": {
+    "frozen": true,
+    "date": "2026-10-10",
+    "original_baseline_requirement_groups": 24,
+    "baseline_requirement_groups": 19,
+    "expert_review_required": false,
+    "scope_amendment": "User explicitly removed missing datasets and requested completion using data already owned, without any downloads.",
+    "policy": "Finish existing requirements before expansion; no silent deferral or added requirement groups",
+    "document": "docs/CURRENT_PLAN.md"
+  },
+  "scope": "Existing local data only",
+  "counting_rule": "Adapters, pilot training and passed software tests do not count as independently qualified specialists",
+  "milestones": [
+    {
+      "id": "eeg",
+      "name": "EEG seizure",
+      "status": "partial",
+      "remaining": "Reduce false alarms using existing 12-recording pilot only; no downloads"
+    }
+  ],
+  "completed_milestones": 0,
+  "total_milestones": 1,
+  "stage_percent": null,
+  "overall_percentage": null,
+  "previous_overall_estimate": 86,
+  "overall_note": "No weighted full-project percentage exists; earlier 86% and 40-50% conversational estimates were not measured and should not be used as a completion metric.",
+  "qualification": {
+    "scope": "UCSF specialist research qualification only",
+    "passed": 2,
+    "total": 9,
+    "clinical_ready": false,
+    "evidence": "docs/research_qualification.json"
+  },
+  "next_stage": {
+    "name": "Finish retained software and model acceptance using existing data only",
+    "dataset_downloads_allowed": false,
+    "expert_review_required": false
+  },
+  "previous_stage_report": "experiments/advanced-fusion-001/index.html",
+  "report": "experiments/additional-specialists-001/index.html",
+  "verified_pairs": 20,
+  "planned_pairs": 20,
+  "expert_review": {
+    "required": false,
+    "status": "optional_removed_from_completion_scope_by_user",
+    "completed": 0,
+    "total": 20
+  },
+  "quality_results": {
+    "tumor_seed42_checks": "5/5",
+    "tumor_seed43_checks": "5/5",
+    "tumor_seed44": "5/5 checks, predictions reproduced",
+    "stroke_fixed_threshold_checks": "2/6",
+    "stroke_selected_threshold": 0.65,
+    "stroke_selected_threshold_checks": "6/6 exploratory development",
+    "stroke_zero_dice_cases": "4 baseline -> 6 selected candidate",
+    "independently_qualified": false,
+    "tumor_confirmation": "3/3 seeds passed all five checks",
+    "software_tests_passed": 240
+  },
+  "automated_audit": {
+    "source_files_verified": 80,
+    "volume_comparisons": 590,
+    "experiment_configs_scanned": 43,
+    "flags_found": 0,
+    "independence_verified": false
+  },
+  "advanced_fusion_acceptance": {
+    "status": "not_qualified",
+    "active_models_changed": false,
+    "independent_uncertainty_reliability_established": false,
+    "adc_only_cli_enabled": false,
+    "reasons": [
+      "Full-input and DWI-only ensemble Dice below DWI baseline",
+      "Full-input calibration Brier and ECE regress",
+      "DWI-only ECE regresses",
+      "ADC-only zero Dice on all 37 cases despite aggregate uncertainty checks passing"
+    ],
+    "cli_smoke_matches_evaluation": true,
+    "checkpoint_replays_verified": 111,
+    "case_mode_outputs_verified": 111
+  },
+  "additional_specialists": {
+    "trained_eeg_pilot": true,
+    "qualified_specialists": 0,
+    "software_tests_passed": 262,
+    "ct_vascular_longitudinal_datasets_available": false
+  },
+  "active_learning": {
+    "status": "workflow_and_retrospective_benchmark_implemented",
+    "workflow_connected": true,
+    "equal_patient_budget_benchmark_completed": true,
+    "paired_seeds": 3,
+    "additional_patients_per_arm": 4,
+    "mean_active_dice": 0.2981908186437087,
+    "mean_random_dice": 0.3354479025215846,
+    "active_selection_benefit_demonstrated": false,
+    "saved_patient_predictions_reproduced": 24,
+    "human_annotation_time_benchmark_completed": false,
+    "software_tests_passed": 269,
+    "report": "experiments/active-learning-benchmark-002/index.html",
+    "guide": "docs/ACTIVE_LEARNING.md"
+  },
+  "federated_simulation": {
+    "status": "partial",
+    "benchmark_completed": true,
+    "exact_round_recovery": true,
+    "saved_metrics_reproduced": true,
+    "report": "experiments/federated-simulation-001/index.html",
+    "remaining": "Untouched evaluation and broader recovery/communication validation"
+  },
+  "local_release_preview": {
+    "status": "partial",
+    "archive_verified": true,
+    "fresh_directory_restore_verified": true,
+    "restored_models_loaded": 3,
+    "archive": "experiments/local-release-preview-001.zip",
+    "remaining": "Clean-machine installation, private-data recovery, monitoring and hosting decision"
+  },
+  "collaborative_review": {
+    "status": "implemented_local",
+    "software_capabilities_completed": 5,
+    "software_capabilities_total": 5,
+    "capabilities": [
+      "accounts",
+      "reviewer assignments",
+      "independent annotations",
+      "disagreement adjudication",
+      "approved versioned label export"
+    ],
+    "expert_reviews_completed": 0,
+    "expert_reviews_total": 20,
+    "report": "docs/COLLABORATIVE_REVIEW.md",
+    "limitations": [
+      "local-only",
+      "external mask editor",
+      "immutable single review round",
+      "professional credentials not verified"
+    ]
+  },
+  "dataset_downloads_allowed": false,
+  "model_promotion": {
+    "status": "implemented",
+    "registry_and_rollback_implemented": true,
+    "inference_registry_integrated": true,
+    "candidate_promoted": false,
+    "evidence": "docs/MODEL_PROMOTION.md",
+    "remaining": "Software integration complete; actual candidate acceptance remains unmet and no candidate promoted"
+  },
+  "requirement_counts": {
+    "implemented": 10,
+    "partial": 8,
+    "pending": 1
+  },
+  "tumor_qualification": {
+    "checks_completed": true,
+    "qualified": false,
+    "checks": [
+      {
+        "id": "application_compatibility",
+        "status": "passed"
+      },
+      {
+        "id": "segmentation_development_quality",
+        "status": "passed"
+      },
+      {
+        "id": "segmentation_development_uncertainty",
+        "status": "passed"
+      },
+      {
+        "id": "classifier_development_uncertainty",
+        "status": "failed"
+      },
+      {
+        "id": "numerical_recomputation",
+        "status": "passed"
+      },
+      {
+        "id": "patient_independent_qualification",
+        "status": "blocked"
+      },
+      {
+        "id": "segmentation_screening_specificity",
+        "status": "not_established"
+      }
+    ],
+    "evidence": "docs/TUMOR_QUALIFICATION.md",
+    "data_downloaded": false,
+    "model_promoted": false
+  },
+  "tumor_classifier_uncertainty_followup": {
+    "evidence": "docs/TUMOR_CLASSIFIER_UNCERTAINTY.md",
+    "recalibration_rejected": true,
+    "original_probabilities_retained": true,
+    "limited_development_checks_passed": true,
+    "calibration_improvement_demonstrated": false,
+    "independent_qualification": false,
+    "model_promoted": false
+  },
+  "stroke_zero_overlap_audit": {
+    "status": "completed_with_rejection",
+    "threshold_065_accepted": false,
+    "fixed_correction_accepted": false,
+    "new_misses_065": 3,
+    "new_misses_correction": 1,
+    "active_model_changed": false,
+    "cross_seed_confirmation": false,
+    "evidence": "docs/STROKE_ZERO_OVERLAP.md"
+  },
+  "ucsf_refinement": {
+    "training_complete": true,
+    "seeds": 3,
+    "new_comparison_passed": false,
+    "original_comparison_passed": false,
+    "independent_qualification": false,
+    "checkpoints_verified": 15,
+    "masks_reproduced": 12,
+    "model_promoted": false,
+    "evidence": "docs/UCSF_REFINEMENT.md"
+  },
+  "data_independence_disposition": {
+    "documentation_complete": true,
+    "independence_certified": false,
+    "issues_with_dispositions": 8,
+    "evidence": "docs/DATA_INDEPENDENCE.md",
+    "completion_basis": "Explicit user request to resolve OR document uncertain identities and possible overlap; not a passed independent-evaluation gate"
+  },
+  "segmentation_robustness": {
+    "status": "implemented",
+    "testing_extension_complete": true,
+    "tumor_validation_images": 721,
+    "stroke_validation_volumes": 37,
+    "conditions_per_task": 6,
+    "paired_metrics_replayed": 4548,
+    "perturbation_failures_resolved": false,
+    "independent_robustness_established": false,
+    "evidence": "docs/SEGMENTATION_ROBUSTNESS.md"
+  },
+  "measurements_and_evidence": {
+    "status": "implemented",
+    "evidence": "docs/MEASUREMENTS_AND_EVIDENCE.md",
+    "validation_volumes": 37,
+    "components_verified": 290,
+    "clinical_measurement_accuracy_established": false
+  },
+  "eeg_false_alarm_reduction": {
+    "status": "partial",
+    "evidence": "docs/EEG_FALSE_ALARM_REDUCTION.md",
+    "baseline_false_alarms": 722,
+    "conservative_false_alarms": 591,
+    "matched_events": 4,
+    "reference_events": 4,
+    "false_alarms_per_background_hour": 59.309229782845044,
+    "excessive_false_alarms_resolved": false,
+    "three_retrained_candidates_rejected": true,
+    "independently_qualified": false
+  },
+  "federated_system_checks": {
+    "status": "partial",
+    "local_system_checks_complete": true,
+    "recovery_exact": true,
+    "communication_checks_complete": true,
+    "development_evaluations_reproduced": 4,
+    "untouched_evaluation_complete": false,
+    "evidence": "docs/FEDERATED_SYSTEM_CHECKS.md"
+  },
+  "research_application_complete": true,
+  "research_delivery_percent": 100,
+  "all_models_qualified": false,
+  "completion_definition": "local_research_application"
+}

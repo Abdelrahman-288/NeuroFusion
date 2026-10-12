@@ -1,0 +1,50 @@
+{
+  "stage": "completed controlled development experiment",
+  "name": "lower learning rate",
+  "hypothesis": "A lower Adam learning rate may reduce unstable validation behavior; five epochs may also converge more slowly.",
+  "baseline": "experiments/ucsf-specialist-train-002",
+  "single_changed_factor": "Adam learning rate",
+  "baseline_learning_rate": 0.001,
+  "candidate_learning_rate": 0.0003,
+  "sampling": "original uniform shuffle without replacement; all 2480 training slices each epoch",
+  "unchanged": {
+    "seed": 42,
+    "epochs": 5,
+    "batch_size": 8,
+    "architecture": "TumorUNet 8/16/32",
+    "initialization": "random",
+    "optimizer": "Adam",
+    "loss": "BCE plus soft Dice",
+    "augmentation": "none",
+    "input": "T1c 240x240",
+    "threshold": 0.5,
+    "checkpoint": "final epoch"
+  },
+  "decision_rule": {
+    "primary": "mean per-patient native Dice must exceed baseline",
+    "guardrails": [
+      "mean native IoU must not decrease",
+      "mean false-positive volume must not increase",
+      "no patient Dice decrease greater than 0.05"
+    ],
+    "if_failed": "retain baseline and report negative result",
+    "if_passed": "candidate for paired three-seed confirmation, not clinical or automatic deployment approval"
+  },
+  "stability_diagnostics": [
+    "all epoch native Dice values",
+    "final minus penultimate mean Dice",
+    "AMP skipped updates"
+  ],
+  "limits": [
+    "four development patients already inspected",
+    "no independent test set",
+    "cannot infer clinical safety or broader performance"
+  ],
+  "training_started": true,
+  "execution": {
+    "run": "experiments/ucsf-low-lr-train-001",
+    "comparison": "experiments/ucsf-low-lr-comparison-001",
+    "decision": "paired-seed confirmation candidate",
+    "model_promoted": false
+  }
+}

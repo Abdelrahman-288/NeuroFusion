@@ -1,0 +1,55 @@
+{
+  "reviewed_on": "2026-10-08",
+  "external_evaluation_completed": false,
+  "automatic_model_promotion": false,
+  "candidates": [
+    {
+      "id": "nickparvar-brain-tumor-mri",
+      "status": "shared_source_not_independent_by_default",
+      "downloaded_for_this_stage": false,
+      "evidence": "https://www.nature.com/articles/s41597-026-06753-y",
+      "relationship": "BRISC explicitly derives from Nickparvar's Brain Tumor MRI Dataset.",
+      "decision": "Do not use as independent validation without provenance and patient-level separation evidence."
+    },
+    {
+      "id": "cheng-sartaj-br35h",
+      "status": "upstream_sources_not_independent_by_default",
+      "downloaded_for_this_stage": false,
+      "evidence": "https://www.nature.com/articles/s41597-026-06753-y",
+      "relationship": "The BRISC paper identifies Cheng, SARTAJ and Br35H as upstream sources of Nickparvar.",
+      "decision": "A different dataset title or file format does not establish independence."
+    },
+    {
+      "id": "ucsf-pdgm",
+      "status": "pilot_acquisition_complete_requires_review",
+      "downloaded_for_this_stage": true,
+      "evidence": "https://www.cancerimagingarchive.net/collection/ucsf-pdgm/",
+      "license_at_source": "CC BY 4.0",
+      "version_reviewed": "5",
+      "patients": 495,
+      "exams": 501,
+      "scope": "Diffuse glioma MRI and annotations; not four-class BRISC validation",
+      "gates": [
+        "Review versioned files, download mechanism, disk space and checksums before acquisition",
+        "Group follow-up exams by actual patient identifiers",
+        "Review provided BraTS identity mapping; UCSF-PDGM and BraTS are not automatically independent",
+        "Document source independence relative to every training and development cohort",
+        "Build and verify NIfTI geometry, intensity and label adapters; current overlap CLI only handles 2D PNG/JPEG",
+        "Freeze patient cohort, task, preprocessing, metrics and selected checkpoint before scoring",
+        "No four-class accuracy or general brain-screening claims from a glioma-only cohort"
+      ],
+      "metadata_downloaded": true,
+      "mri_volumes_downloaded": 20,
+      "intake_report": "experiments/pdgm-intake-001/summary.json",
+      "mask_volumes_downloaded": 20,
+      "pilot_prepared": 20,
+      "pilot_awaiting_files": 0,
+      "pilot_import_report": "experiments/pdgm-import-004/summary.json",
+      "evaluation_ready": false,
+      "resolution_audit": "experiments/pdgm-pilot-resolution-001/summary.json",
+      "alignment_review": "experiments/pdgm-pilot-resolution-001/alignment-review.json",
+      "cohort_separation_report": "experiments/pdgm-cohort-separation-001/summary.json",
+      "candidate_patients_not_independence_verified": 192
+    }
+  ]
+}

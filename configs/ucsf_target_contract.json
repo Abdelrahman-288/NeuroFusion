@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "dataset": "UCSF-PDGM",
+  "version": 5,
+  "status": "candidate_mapping_supported_by_primary_sources",
+  "version_specific_mapping_confirmed": false,
+  "evaluation_ready": false,
+  "allowed_labels": [0, 1, 2, 4],
+  "regions": {"WT": [1, 2, 4], "TC": [1, 4], "ET": [4]},
+  "label_descriptions": {
+    "0": "Outside the annotated regions; not a healthy-brain diagnosis",
+    "1": "BraTS 2021 necrotic core; UCSF describes a non-enhancing/necrotic compartment",
+    "2": "Peritumoral edematous/invaded tissue; UCSF describes surrounding FLAIR abnormality",
+    "4": "Enhancing tumor"
+  },
+  "evidence": [
+    {"url": "https://www.med.upenn.edu/cbica/brats2021/", "supports": "Explicit BraTS 2021 IDs and nested ET/TC/WT definitions"},
+    {"url": "https://www.cancerimagingarchive.net/collection/ucsf-pdgm/", "supports": "UCSF annotations produced as part of BraTS 2021; three named compartments", "local_snapshot": "data/downloads/ucsf-pdgm-v5-metadata/collection.html"}
+  ],
+  "inference": "Applying the BraTS mapping to UCSF version 5 is a source-supported inference, not explicit version-specific confirmation.",
+  "current_model_compatibility": {
+    "checkpoint": "experiments/tumor-seg-001/last.pt",
+    "output": "One binary BRISC foreground probability map",
+    "region_equivalence_verified": false,
+    "decision": "Do not claim separate ET/TC/WT predictions or automatically equate BRISC foreground with a UCSF region."
+  }
+}
